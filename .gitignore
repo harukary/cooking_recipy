@@ -88,3 +88,15 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Recipe
+/database/*.json
+/database/recipe/*.json
+/database/recipe/*/*.json
+!/database/recipe/*.md
+
+# Ingredient
+/database/*.csv
+/database/Ingredient/*.csv
+/database/Ingredient/*/*.csv
+!/database/Ingredient/*.md
