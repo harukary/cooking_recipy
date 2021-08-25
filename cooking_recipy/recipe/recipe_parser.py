@@ -49,9 +49,18 @@ def parse_chefgohan(id):
     json_chef = json.loads(txt_chef)
     # print([{'name': i.split(':')[0].split('\u3000')[0], 'quantity': i.split(':')[1]} for i in json_chef['recipeIngredient']])
     # print([inst.split('.')[1].split('\u3000')[0] for inst in json_chef['recipeInstructions']])
+    # print(json_chef['recipeIngredient'])
+    ingredients = []
+    for i in json_chef['recipeIngredient']:
+        ingr_and_q = i.split(':')
+        if len(ingr_and_q) == 1:
+            ingredients.append({'name': i.split(':')[0].split('\u3000')[0]})
+        elif len(ingr_and_q) > 1:
+            ingredients.append({'name': i.split(':')[0].split('\u3000')[0], 'quantity': i.split(':')[1]})
+
     json_recipe = {
         'publisher': json_chef['publisher']['name'],
-        'title': json_chef['name'],
+        'title': json_chef['name'].replace('\t',''),
         'image': json_chef['image'],
         'date': json_chef['datePublished'].split(' ')[0],
         'time': json_chef['totalTime'].replace('PT','').replace('M',''),
@@ -59,10 +68,10 @@ def parse_chefgohan(id):
         'method': json_chef['cookingMethod'],
         'cuisine': json_chef['recipeCuisine'],
         'author': json_chef['author']['name'],
-        'ingredients': [{'name': i.split(':')[0].split('\u3000')[0], 'quantity': i.split(':')[1]} for i in json_chef['recipeIngredient']],
+        'ingredients': ingredients,
         'instructions': [inst.split('.')[1].split('\u3000')[0] for inst in json_chef['recipeInstructions']]
     }
-    file_name = 'database/recipe/chefgohan/chefgohan_' + json_chef['name'] + '.json'
+    file_name = 'database/recipe/chefgohan/chefgohan_' + json_chef['name'].replace('\t','') + '.json'
     with open(file_name, 'w', encoding="utf-8") as f:
         json.dump(json_recipe, f, ensure_ascii=False, indent=4)
     print(id,':',url,"...Done")
