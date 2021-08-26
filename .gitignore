@@ -100,3 +100,5 @@ ENV/
 /database/Ingredient/*.csv
 /database/Ingredient/*/*.csv
 !/database/Ingredient/*.md
+
+*.ipynb

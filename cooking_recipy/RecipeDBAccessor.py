@@ -1,12 +1,5 @@
 import json
-import pandas as pd
-import matplotlib.pyplot as plt
 import random
-from PIL import Image
-import io
-from urllib.request import urlopen
-import numpy as np
-import os
 
 class RecipeDBAccessor:
     def __init__(self,file):
