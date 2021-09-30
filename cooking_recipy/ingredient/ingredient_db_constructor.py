@@ -5,9 +5,13 @@ def main():
     df = df.replace({'Tr': '0', '-': '0', '†': '', '\(': '', '\)': '', '\*': '0'}, regex=True)
     df = df.astype(float)
     df = df.fillna(0)
-    df_main = df[['l_class','WATER', 'PROT-', 'FAT-', 'CHOCDF-', 'FIB-', 'NACL_EQ', 
-                    'NA', 'K', 'CA', 'MG', 'P', 'FE', 'ZN', 'CU', 'MN', 
-                    'VITD', 'VITK ', 'THIA', 'RIBF', 'VITB6A', 'VITB12', 'VITC']]
+    df_main = df[
+        [
+            'l_class','WATER', 'PROT-', 'FAT-', 'CHOCDF-', 'FIB-', 'NACL_EQ', 
+            'NA', 'K', 'CA', 'MG', 'P', 'FE', 'ZN', 'CU', 'MN', 
+            'VITA_RAE', 'VITD', 'VITK ', 'THIA', 'RIBF', 'VITB6A', 'VITB12', 'VITC'
+        ]
+    ]
     df_main['VITE'] = df['TOCPHA'] + df['TOCPHB'] + df['TOCPHG'] + df['TOCPHD']
 
     df_db = df_main[(df['l_class'] != 18) & (df['l_class'] != 15)]

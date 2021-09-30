@@ -22,4 +22,5 @@ from cooking_recipy.ingredient import ingredient_db_constructor
 
 ingredientdb_file = 'ingredient.csv'
 ingredient = IngredientDBAccessor(ingredientdb_file)
-print(ingredient.get_random_substitution('＜鳥肉類＞　にわとり　［若どり・副品目］　ささみ　生'))
+res, score = ingredient.get_random_substitution('＜鳥肉類＞　にわとり　［若どり・副品目］　ささみ　生')
+print("result:", res)

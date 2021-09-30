@@ -15,14 +15,17 @@ def main():
     file_name = 'database/recipe_'+ args[1]
     recipedb_dict = {}
     recipedb_dict['recipes'] = {}
+
     try:
         with open(file_name + '.json', encoding="utf-8") as f:
             recipedb_dict = json.load(f)
     except:
         print("DB not found")
+    
     dt_now = datetime.datetime.now()
     date = dt_now.strftime('%Y-%m-%d')
     recipedb_dict['date'] = date
+    
     for path in pathlist:
         with open(path, encoding="utf-8") as f:
             df = json.load(f)

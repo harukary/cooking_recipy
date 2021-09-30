@@ -10,19 +10,24 @@ def main():
     args = sys.argv
     setting_file = 'settings/' + args[1]
     setting = 'setting/parser.json'
+
     try:
         with open(setting_file, 'r') as f:
             setting = json.load(f)
     except:
         print('Error! Setting file not found:', setting_file)
         return
+    
     target = setting['target']
     s = setting['id_start']
     e = setting['id_end']
+
     if target not in target_list:
         return
+    
     id_list = [i for i in range(s,e)]
     print(target, ':',s,'to',e )
+    
     if target=='chefgohan':
         for id in id_list:
             parse_chefgohan(id)
@@ -35,6 +40,7 @@ def main():
         print('Not supported yet')
     else:
         print('Not supported')
+
 
 def parse_chefgohan(id):
     url = 'https://chefgohan.gnavi.co.jp/detail/' + str(id) + '/'
